@@ -17,9 +17,9 @@ Claims: NON_ACTIONABLE_HUMAN_REVIEW_REQUIRED
 
 ## Demo Status
 
-This repository is currently prepared for static local use.
+Live demo: [GitHub Pages public preview](https://infinitus01.github.io/hea-candidate-audit-console/).
 
-A GitHub Pages deployment may be enabled later as a public preview, but the current project remains a static MVP baseline and does not provide experimental validation, production readiness, or autonomous material recommendations.
+This demo is a static frontend-only MVP. It is intended for passive descriptor-level review and claim-boundary demonstration only. It does not provide experimental validation, production readiness, or autonomous material recommendations.
 
 ## What It Does
 
