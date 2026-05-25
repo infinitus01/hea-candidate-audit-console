@@ -11,6 +11,10 @@ Scope: PASSIVE_DESCRIPTOR_AUDIT
 Claims: NON_ACTIONABLE_HUMAN_REVIEW_REQUIRED
 ```
 
+## Preview
+
+![HEA Candidate Audit Console preview](docs/screenshots/hea-console-main.png)
+
 ## What It Does
 
 - Accepts alloy composition input such as `Al20Co20Cr20Fe20Ni20`.
