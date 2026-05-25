@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEA Candidate Audit Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css?v=0.1.1-boundary">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span>HEA<span class="gradient-text">Audit</span></span>
+            </div>
+            <nav class="nav-menu" aria-label="Primary">
+                <a href="#audit" class="nav-item active"><i class="fas fa-shield-halved"></i> Console</a>
+                <a href="#composer" class="nav-item"><i class="fas fa-flask-vial"></i> Composition</a>
+                <a href="#gate" class="nav-item"><i class="fas fa-list-check"></i> Descriptor Gate</a>
+                <a href="#risk" class="nav-item"><i class="fas fa-triangle-exclamation"></i> Risk Review</a>
+                <a href="#reports" class="nav-item"><i class="fas fa-file-export"></i> Reports</a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="https://ui-avatars.com/api/?name=HEA+Audit&background=0D8ABC&color=fff" alt="HEA audit workspace">
+                    <div class="user-info">
+                        <span class="user-name">HEA Candidate Audit</span>
+                        <span class="user-role">v0.1.1 static baseline</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content" id="audit">
+            <header class="top-bar">
+                <div>
+                    <p class="eyebrow">HEA Candidate Audit Console</p>
+                    <h1>Descriptor-level screening and claim boundary review</h1>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-secondary" type="button" id="exportMarkdownBtn"><i class="fas fa-file-lines"></i> Markdown</button>
+                    <button class="btn btn-primary" type="button" id="exportJsonBtn"><i class="fas fa-code"></i> JSON</button>
+                </div>
+            </header>
+
+            <section class="content-grid">
+                <div class="stats-row">
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon cyan"><i class="fas fa-vial"></i></div>
+                        <div class="stat-content">
+                            <h3>Active Candidate</h3>
+                            <div class="value compact" id="activeCandidate">--</div>
+                            <div class="trend neutral" id="activeComposition">No candidate loaded</div>
+                        </div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon violet"><i class="fas fa-clipboard-check"></i></div>
+                        <div class="stat-content">
+                            <h3>Descriptor Coverage</h3>
+                            <div class="value" id="descriptorCoverage">0%</div>
+                            <div class="trend neutral">Mock descriptor completeness</div>
+                        </div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon orange"><i class="fas fa-user-check"></i></div>
+                        <div class="stat-content">
+                            <h3>Claim State</h3>
+                            <div class="value compact" id="claimState">Review</div>
+                            <div class="trend neutral">Human review required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="workspace-grid" id="composer">
+                    <section class="glass-card input-card">
+                        <div class="card-header">
+                            <h2>Composition Input</h2>
+                            <span class="badge">Formula / JSON</span>
+                        </div>
+                        <textarea id="compositionInput" spellcheck="false">Al20Co20Cr20Fe20Ni20</textarea>
+                        <div class="control-row">
+                            <select id="seedSampleSelect" aria-label="Seed sample"></select>
+                            <button class="btn btn-secondary" type="button" id="loadSeedBtn"><i class="fas fa-database"></i> Load Seed</button>
+                            <button class="btn btn-primary" type="button" id="runAuditBtn"><i class="fas fa-play"></i> Run Audit</button>
+                        </div>
+                        <div class="input-status" id="inputStatus">Ready</div>
+                    </section>
+
+                    <section class="glass-card summary-card">
+                        <div class="card-header">
+                            <h2>Audit Snapshot</h2>
+                            <span class="badge" id="auditVersion">v0.1.1</span>
+                        </div>
+                        <div class="summary-list" id="snapshotList"></div>
+                        <p class="governance-note">Static MVP baseline. Runtime is static frontend only. Scope is passive descriptor audit. Claims are non-actionable and require human review before technical, experimental, process, or manufacturing use.</p>
+                    </section>
+                </div>
+
+                <div class="analysis-section" id="gate">
+                    <section class="glass-card chart-container">
+                        <div class="card-header">
+                            <h2>Descriptor Gate</h2>
+                            <span class="badge">Normalized 0-100</span>
+                        </div>
+                        <div class="chart-frame">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </section>
+
+                    <section class="glass-card gate-card">
+                        <div class="card-header">
+                            <h2>Gate Values</h2>
+                            <span class="badge" id="descriptorClass">HEURISTIC</span>
+                        </div>
+                        <div class="gate-list" id="descriptorGateList"></div>
+                    </section>
+                </div>
+
+                <div class="workspace-grid" id="risk">
+                    <section class="glass-card review-card">
+                        <div class="card-header">
+                            <h2>Risk Classification</h2>
+                            <span class="badge orange" id="riskLevelBadge">Review</span>
+                        </div>
+                        <div class="review-list" id="riskList"></div>
+                    </section>
+
+                    <section class="glass-card review-card">
+                        <div class="card-header">
+                            <h2>Claim Boundary</h2>
+                            <span class="badge">Non-actionable</span>
+                        </div>
+                        <div class="review-list" id="boundaryList"></div>
+                    </section>
+                </div>
+
+                <section class="glass-card table-card" id="reports">
+                    <div class="card-header">
+                        <h2>Seed Candidate Queue</h2>
+                        <span class="badge">Demo data</span>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Sample ID</th>
+                                <th>Alloy System</th>
+                                <th>Descriptor Class</th>
+                                <th>Phase Note</th>
+                                <th>Target Review Context</th>
+                                <th>Descriptor Coverage</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportsTableBody"></tbody>
+                    </table>
+                </section>
+            </section>
+        </main>
+    </div>
+    <script src="data.js?v=0.1.1-boundary"></script>
+    <script src="app.js?v=0.1.1-boundary"></script>
+</body>
+</html>
