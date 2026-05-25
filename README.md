@@ -26,6 +26,25 @@ Claims: NON_ACTIONABLE_HUMAN_REVIEW_REQUIRED
 - It does not replace CALPHAD, XRD, SEM-EDS, hardness tests, magnetic tests, or coupon-level review.
 - It does not produce autonomous technical claims.
 
+## Who this is for
+
+This project is intended for:
+
+- HEA / MPEA researchers reviewing early-stage candidate screening workflows
+- Materials informatics engineers designing audit-oriented scientific software
+- Labs or small R&D teams exploring passive pre-screening report concepts
+- Technical reviewers interested in claim-boundary-safe AI/materials demos
+
+## Who this is not for
+
+This project is not designed for users looking for:
+
+- automatic alloy invention
+- validated material property prediction
+- production-ready alloy recommendations
+- replacement of CALPHAD, XRD, SEM-EDS, or physical testing
+- autonomous manufacturing, procurement, or deployment decisions
+
 ## File Set
 
 ```text
@@ -47,4 +66,3 @@ npx serve .
 ```
 
 The current build uses external CDN assets for Chart.js, FontAwesome, Google Fonts, and avatar rendering. A later offline asset patch can localize those dependencies.
-
