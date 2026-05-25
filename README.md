@@ -15,6 +15,12 @@ Claims: NON_ACTIONABLE_HUMAN_REVIEW_REQUIRED
 
 ![HEA Candidate Audit Console preview](docs/screenshots/hea-console-main.png)
 
+## Demo Status
+
+This repository is currently prepared for static local use.
+
+A GitHub Pages deployment may be enabled later as a public preview, but the current project remains a static MVP baseline and does not provide experimental validation, production readiness, or autonomous material recommendations.
+
 ## What It Does
 
 - Accepts alloy composition input such as `Al20Co20Cr20Fe20Ni20`.
